@@ -14,37 +14,24 @@ function getInfo(user) {
 
 class TarjetaFruta extends React.Component {
 
-  constructor() {
-    super()
-
-    const METHODS =[
-      'agregar', 
-      'quitar',
-      'limpiar'
-    ]
-
-    METHODS.forEach((method) => {
-      this[method] = this[method].bind(this)
-    })
-
-    this.state = {
-      cantidad: 0
-    }
+  state = {
+    cantidad: 0
   }
 
-  agregar () {
-    this.setState({
+  // Este metodo funciona a partir de un inicializador de propiedad, son adoptados dentro de la comunidad
+  // PERO NO FORMAN PARTE DEL ESTANDAR
+  agregar = () => this.setState({
       cantidad: this.state.cantidad + 1
     })
-  }
+  //////////////////////////
 
-  quitar () {
+  quitar = () => {
     this.setState({
       cantidad: this.state.cantidad - 1
     })
   }
 
-  limpiar () {
+  limpiar = () => {
     this.setState({
       cantidad: 0
     })
