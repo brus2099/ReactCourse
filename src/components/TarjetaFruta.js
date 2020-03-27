@@ -1,4 +1,5 @@
 import React from 'react'
+import './TarjetaFruta.css'
 
 class TarjetaFruta extends React.Component {
 
@@ -26,26 +27,16 @@ class TarjetaFruta extends React.Component {
     }
   
     render() {
+      
+      const hasItems = this.state.cantidad > 0
+      const activeClass = hasItems ? 'card-active' : ''
+      const clases = `card ${activeClass}`
+
       return (
-        <div>
+        <div className={clases}>
           <h2>{this.props.name}</h2>
           <div>Cantidad: {this.state.cantidad}</div>
           <button
-            /* El siguiente es un ejemplo de mala programación, debido a que afecta a todo el estadp
-             * y los componentes deben renderizarse nuevamente cada uno. Se observa que el 
-             * método setState asigna un nuevo valor numerico al estado, pero este estado está asociado a
-             * cada componente que lo está usando. 
-             
-            
-            onClick={() => {
-              //this.state.cantidad = 100
-              //this.forceUpdate()
-              this.setState({ 
-                cantidad: this.state.cantidad + 1
-               })
-            }} */
-  
-            // Una manera adecuada es la siguiente:
             onClick={this.agregar}
           >
             +
@@ -54,6 +45,9 @@ class TarjetaFruta extends React.Component {
           <button onClick={this.limpiar}>Limpiar</button>
           <hr />
           <p>${this.props.price}</p>
+          <p>
+            Total: ${ this.props.price * this.state.cantidad }
+          </p>
         </div>
       )
     }
