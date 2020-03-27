@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #191414;
+        }
+
+        #console {
+            color: white;
+            font-family: Arial Rounded MT; 
+            text-align:center; 
+            font-size: 5em; 
+            border: 6px solid #1db954;
+            background-color: ;
+            padding: 20px;
+            
+            margin: 200px;
+            border-radius: 30px;
+        }
+
+        #title {
+            color: #1ed760;
+            font-family: Arial Rounded MT; 
+            text-align:center; 
+            font-size: 9em;
+        }
+
+        #console:hover{
+            background-color: #1ed760 !important;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id='title'>Object.assign()</h1>
+    <p id='console'>Open the console</p>
+
+    <script>
+
+        // Ayuda a clonar un objeto, o propiedades de objetos diferentes
+
+        const perfil = {
+            nombre: 'Brus',
+            novia: 'Itzel',
+            info: {
+                direccion: 'mi direccion...'
+            }
+        }
+
+        const region = {
+            pais: 'México',
+            info: {
+                coordenadas: 'mis coordenadas...'
+            }
+        }
+
+        const social = {
+            twitter: 'no tengo',
+            nombre: 'Aqui no se encuentra'
+        }
+
+        /* Una:
+        const resultado = Object.assign(
+            {},
+            perfil, 
+            region,
+            social,
+            {
+                info: Object.assign(
+                    {},
+                    perfil.info, 
+                    region.info
+                )
+            }
+        )
+        Otra forma:
+        resultado.info = Object.assign(
+            [],
+            perfil.info,
+            region.info
+        ) */
+
+        // Con operador Spread
+
+        const resultado = {
+            ...region, 
+            ...perfil, 
+            ...social, 
+            nombre: 'Brus 2', //Las propiedades se siguen superponiendo0
+            //Podemos usar Spread dentro del mismo operador
+            info: {
+                ...perfil.info, 
+                ...region.info
+            }
+        }
+
+        // Spread funciona con cualquier elemento iterable
+        const frutasVerdes = [
+            'kiwi', 
+            'uva', 
+            'limon'
+        ]
+
+        const frutasRojas = [
+            'manzana', 
+            'fresa', 
+            'sandia'
+        ]
+
+        const frutas = [
+            'otra clase de objetos', 
+            1, 2, 5, 100, 
+            ...frutasVerdes,
+            'pera',  
+            ...frutasRojas
+        ]
+
+        console.log(frutas)
+
+    </script>
+
+</body>
+
+</html>
